@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4> {{todo.title}} </h4>
+    <hr>
+    <p>This todo is {{ todo.status }}</p>
+    <button class="btn btn-success" (click)="onSetNewStatus('new')">Set to 'new'</button>
+    <button class="btn btn-success" (click)="onSetNewStatus('in progress')">Set to 'in progress'</button>
+    <button class="btn btn-success" (click)="onSetNewStatus('done')">Set to 'done'</button>
+  </div>
+</div>
