@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+// import { LoggingService } from '../shared/services/logging.service';
+import { TodosService } from '../shared/services/todos.service';
 
 @Component({
   selector: 'app-todo',
@@ -8,10 +11,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class TodoComponent {
   @Input() todo: {title: string, status: string};
   @Input() id: number;
-  @Output() statusChanged = new EventEmitter<{ id: number, newStatus: string }>();
+
+  constructor(
+    private todosService: TodosService
+  ) { }
 
   onSetNewStatus(todoStatus: string) {
-    this.statusChanged.emit({ id: this.id, newStatus: todoStatus });
-    console.log(`TODO status was changed. New status: ${todoStatus}`);
+    this.todosService.changeTodoStatus(this.id, todoStatus);
+    this.todosService.statusChanged.emit(todoStatus);
+    // this.loggingService.logStatus(todoStatus);
   }
 }

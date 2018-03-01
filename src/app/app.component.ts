@@ -1,31 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import { TodosService } from './shared/services/todos.service';
+import { Todo } from './todo.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  // providers: [TodosService]
 })
-export class AppComponent {
-  todos = [
-    {
-      title: 'Learn Angular',
-      status: 'in progress'
-    },
-    {
-      title: 'Buy a car',
-      status: 'new'
-    },
-    {
-      title: 'Buy a cat',
-      status: 'done'
-    }
-  ];
+export class AppComponent implements OnInit {
+  todos: Todo[];
+  constructor(
+    private todosService: TodosService
+  ) {}
 
-  onTodoAdded(todo: { title: string, status: string }) {
-    this.todos.push(todo);
-  }
-
-  onStatusChanged(updateData: { id: number, newStatus: string }) {
-    this.todos[updateData.id].status = updateData.newStatus;
+  ngOnInit() {
+    this.todos = this.todosService.todos;
   }
 }

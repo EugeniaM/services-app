@@ -1,13 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <app-add-todo (todoAdded)="onTodoAdded($event)"></app-add-todo>
+      <app-add-todo></app-add-todo>
       <hr>
       <app-todo
         *ngFor="let todo of todos; let i = index"
         [todo]="todo"
-        [id]="i"
-        (statusChanged)="onStatusChanged($event)"></app-todo>
+        [id]="i"></app-todo>
     </div>
   </div>
 </div>
